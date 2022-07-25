@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require("../config/keys");
 const authentication=require("../middlewares/auth")
 router.post("/signup",(req,res)=>{
-    const {name,email,password,hash}=req.body
+    const {name,email,password}=req.body
      if(!name || !email || !password){
        return res.status(404).json({error:"Please fill all the fields properly"})
      }

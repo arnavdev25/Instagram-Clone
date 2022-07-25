@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Footer from '../Components/Footer'
+import Footer from '../Components/Home/Footer'
 import style from "../Styles/Login.module.css"
 const Login = () => {
   const [FormData, setFormData] = useState({});

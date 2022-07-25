@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
-import Slider from "../Components/Slider";
 import style from "../Styles/Login.module.css";
 
 import styles from "../Styles/Welcome.module.css";
-import Footer from "../Components/Footer";
+import Footer from "../Components/Home/Footer";
+import Slider from "../Components/Home/Slider";
 const Welcome = () => {
   const [FormData, setFormData] = useState({});
   const [btn, setBtn] = useState(true);
