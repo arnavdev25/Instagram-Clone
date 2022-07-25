@@ -1,0 +1,72 @@
+ 
+ .homemain{
+    display: flex;
+    width: 60%;
+    margin: 10px auto;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+ .home > img {
+width: 450px;
+height: 650px;
+/* display: none; */
+/* position: absolute; */
+z-index: auto;
+/* margin-left: 100px; */
+margin-top: 550px;
+margin-left: 20px;
+/* z-index: -1; */
+}
+.hom > img:first-child{
+    width: 300px;
+height: 410px;
+margin-top: -800px;
+margin-left: -400px;
+}
+.hom > img:last-child{
+    margin-top: -40px;
+    margin-left: -300px;
+    width: 200px;
+    height: 388px;
+    }
+.home > div{
+    margin-top: -630px;
+    /* display: none; */
+    /* position:relative; */
+  
+    margin-left: 168px;
+    
+}
+.home{
+    margin-top: -500px;
+}
+.home2{
+    width: 60%;
+    margin-top: 60px;
+    margin-left: -50px;
+}
+@media all and (max-width:381px) and (min-width:50px){
+    .homemain{
+        width: 90%;
+    }
+    .home{
+        display: none;
+    }
+    .home2{
+        margin-left: -100px;
+    }
+}
+@media all and (max-width:781px) and (min-width:380px){
+    .homemain{
+        width: 90%;
+    }
+    .home{
+        display: none;
+    }
+    .homemain>div:last-child{
+        margin-left: -30px;
+    }
+    
+}

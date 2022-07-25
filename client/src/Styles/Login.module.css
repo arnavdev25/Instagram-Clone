@@ -1,0 +1,231 @@
+.home{
+    width: 20%;
+    margin: 60px auto;
+    /* margin-left: -50px; */
+    /* border: 1px solid black; */
+  }
+  .box,
+  .box1 {
+    align-items: center;
+    width: 23%;
+    margin: 10px auto;
+    background-color: #fff;
+    background-color: rgba(var(--d87, 255, 255, 255), 1);
+    border: 1px solid #dbdbdb;
+    border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    border-radius: 1px;
+    /* margin: 0 0 10px; */
+    padding: 40px;
+  }
+  .box1 {
+    padding: 10px;
+  }
+  body {
+    background-color: rgba(var(--b3f, 250, 250, 250), 1);
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .app > img {
+    height: 40px;
+    width: 110px;
+    margin-right: 10px;
+  }
+  .label_float > p {
+    font: inherit;
+    vertical-align: baseline;
+    color: rgba(var(--f52, 142, 142, 142), 1);
+    font-size: 11px;
+    height: 36px;
+  
+    line-height: 36px;
+    overflow: hidden;
+    pointer-events: none;
+    /* position: relative; */
+  
+    text-overflow: ellipsis;
+    transform-origin: left;
+    transition: transform ease-out 0.1s, -webkit-transform ease-out 0.1s;
+    user-select: none;
+    white-space: nowrap;
+    text-align: left;
+    margin-left: 13px;
+    margin-top: -61px;
+    position: absolute;
+    transform: translate(0, 26px) scale(1);
+    transform-origin: top left;
+    transition: all 0.2s ease-out;
+  }
+  form .label_float {
+    position: relative;
+  }
+  
+  .label_float> input {
+    color: rgba(var(--i1d, 38, 38, 38), 1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+      Arial, sans-serif;
+    line-height: 18px;
+    -webkit-appearance: none;
+    background: rgba(var(--b3f, 250, 250, 250), 1);
+    border: 0;
+    -webkit-box-flex: 1;
+    flex: 1 0 auto;
+    margin: 0;
+    outline: 0;
+    overflow: hidden;
+    padding: 9px 0 7px 8px;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
+    border-radius: 3px;
+    width: 240px;
+  }
+  
+  
+  input[type="password"]::-ms-reveal,
+  input[type="password"]::-ms-clear {
+    display: none;
+  }
+  
+  form > input:last-child {
+    background-color: rgba(var(--d69, 0, 149, 246), 0.3);
+    opacity: 1;
+    height: 30px;
+    width: 240px;
+    text-align: center;
+    margin-top: 15px;
+    padding: 0px;
+    color: #fff;
+    border: none;
+  }
+  form > input:last-child:enabled{
+    background-color: blue;
+  }
+  .label_float{
+      position: relative;
+     
+    }
+    
+    .label_float input{
+    outline: none;
+      font-size: 12px;
+      transition: all .3s ease-out;
+      -webkit-transition: all .3s ease-out;
+      -moz-transition: all .3s ease-out;
+      -webkit-appearance:none;
+      padding-bottom: 5px;
+    }
+  
+    
+    .label_float label{
+      pointer-events: none;
+      position: absolute;
+      top: 0px;
+      left: 14px;
+      font-size: 12px;
+      margin-top: 8px;
+      transition: all .3s ease-out;
+      -webkit-transition: all .3s ease-out;
+      -moz-transition: all .3s ease-out;
+      
+  color: #8e8e8e;
+    }
+    
+    .label_float input:focus + label,
+    .label_float input:not(:placeholder-shown) + label{
+      font-size: 10px;
+      margin-top: 0;
+      color: #00000061;
+      padding-top: 1px;
+    }
+  
+  .or {
+    display: flex;
+    width: 250px;
+    margin: 15px auto;
+  }
+  .box a {
+    text-decoration: none;
+  }
+  .or > div:first-child,
+  .or > div:last-child {
+    color: rgba(var(--i1d, 38, 38, 38), 1);
+    font: inherit;
+    vertical-align: baseline;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    border: 0 solid #000;
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(var(--b38, 219, 219, 219), 1);
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 1px;
+    position: relative;
+    top: 0.45em;
+  }
+  .or > div:nth-child(2) {
+    font: inherit;
+    vertical-align: baseline;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    border: 0 solid #000;
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+    color: rgba(var(--f52, 142, 142, 142), 1);
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 15px;
+    margin: 0 18px;
+    text-transform: uppercase;
+  }
+  .show {
+    color: #8e8e8e;
+    font-weight: 600;
+    cursor: pointer;
+  
+    position: relative;
+    margin-left: 185px;
+    margin-top: -26px;
+    font-size: 13px;
+  }
+  @media all and (max-width: 381px) and (min-width: 50px) {
+    .box,.box1 {
+      width: 100%;
+    }
+    .home{
+      width: 90%;
+   }
+   .label{
+     /* left:-12px; */
+     /* text-align:left ; */
+     /* display: none; */
+     margin-left:-40px;
+   }
+  
+  }
+  @media all and (max-width: 781px) and (min-width: 380px) {
+    .box {
+      width: 90%;
+    }
+    .home{
+       width: 70%;
+    }
+   
+  }
