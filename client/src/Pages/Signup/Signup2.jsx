@@ -6,7 +6,9 @@ import apple_store from '../../Images/apple_store.png'
 import google_play from '../../Images/google_play.png'
 
 const Signup2 = () => {
-const [dates, setdates] = useState({})
+const [dates, setdates] = useState({
+  month: 'January', date: '1', year: '2022'
+})
 
 const handleChange=(e)=>{
   let inputName=e.target.name;

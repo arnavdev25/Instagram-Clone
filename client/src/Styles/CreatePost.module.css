@@ -1,0 +1,118 @@
+/* custompopup */
+.overlay {
+  visibility: hidden;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+}
+.popup {
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  transition: all 5s ease-in-out;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color:white;
+  z-index: 1;
+}
+.popup .close:hover {
+  cursor: pointer;
+  color: #000;
+}
+.popup .content {
+  height: 600px;
+  overflow: auto;
+  margin-top: 50px;
+}
+/* popup */
+.popupDiv {
+    width: 40%;
+    margin: auto;
+    background-color: #fff;
+    color:#1C1E21;
+    padding: 25px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.popupDiv h3{
+    font-weight: 600;
+    font-size: 20px;
+}
+.popupDiv svg {
+    margin-top: 100px;
+}
+.overlay h4 {
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: 400;
+}
+.popupDiv button {
+    background-color: blue;
+    color: #fff;
+    border-radius: 5px;
+    padding: 7px 25px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    margin-bottom: 150px;
+}
+.form{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+.form form {
+  margin-left: 15px;
+  margin-top: -10px;
+}
+.form form label {
+  text-align: left;
+  font-size: 15px;
+}
+.form form .input{
+   height: 200px;
+   width:95%;
+   border-radius: 3px;
+   border: 1px solid #333;
+   padding: 5px;
+   font-size: 14px;
+
+}
+.btn1 {
+  background-color: blue;
+  color: #fff;
+  border-radius: 5px;
+  padding: 7px 15px;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 12px;
+  /* margin-bottom: 150px; */
+}

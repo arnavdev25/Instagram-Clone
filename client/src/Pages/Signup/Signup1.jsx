@@ -1,22 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "../../Styles/Signup.module.css";
 import insta_logo from "../../Images/insta_logo.png";
 import apple_store from "../../Images/apple_store.png";
 import google_play from "../../Images/google_play.png";
 import { FaFacebookSquare } from "react-icons/fa";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
+  const navigate = useNavigate();
   const [FormData, setFormData] = useState({});
+  const [btn, setBtn] = useState(true);
   const [types, setTypes] = useState("password");
-
   const [clickInp, setclickInp] = useState(false);
-
+  const [pass, setPass] = useState(false);
+  function validateEmail(emailAdress) {
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (emailAdress.match(regexEmail)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  function handleBtn() {
+    if (clickInp && pass) {
+      setBtn(false);
+    } else {
+      setBtn(true);
+    }
+    // console.log(pass)
+  }
   const handleChange = (e) => {
     const inputName = e.target.name;
-    setFormData({
-      ...FormData,
-      [inputName]: e.target.value,
-    });
+    if (e.target.value !== "") {
+      setFormData({
+        ...FormData,
+        [inputName]: e.target.value,
+      });
+    }
 
     if (e.target.value === "") {
       setclickInp(false);
@@ -25,20 +45,34 @@ const Signup = () => {
     } else {
       setclickInp(true);
     }
+    if (inputName === "password") {
+      if (e.target.value.length >= 8) {
+        setPass(true);
+      }
+      // console.log(pass)
+    }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (FormData) {
-      console.log(FormData);
+    if (FormData && validateEmail(FormData.email)) {
+      axios
+        .post("http://localhost:8080/auth/signup", FormData)
+        .then((data) => {
+          navigate("/signup/details");
+        })
+        .catch((e) => alert(e.response.data.error));
     } else {
-      alert("Fill the details Correctly");
+      alert("Invalid Email");
     }
   };
 
   const rightLogoOnClick = () => {
     setTypes(types === "password" ? "text" : "password");
   };
-
+  useEffect(() => {
+    // console.log(btn)
+    handleBtn();
+  }, [clickInp, pass]);
   return (
     <div className={style.sign_main}>
       <form className={style.signup} onSubmit={handleSubmit}>
@@ -127,14 +161,7 @@ const Signup = () => {
             <span> Data Policy and Cookies Policy .</span>
           </p>
         </div>
-        <button
-          className={style.login_fb + " " + style.signup_btn}
-          // style={!error ? {backgroundColor:"blue"} : {backgroundColor:"black"}}
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Sign up
-        </button>
+        <input type="submit" disabled={btn} value="Login" />
       </form>
 
       <div className={style.have_ac}>

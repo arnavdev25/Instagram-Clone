@@ -7,6 +7,7 @@ const FeedPage = () => {
     <>
     <Header/>
       <Feed/>
+    
     </>
   )
 }

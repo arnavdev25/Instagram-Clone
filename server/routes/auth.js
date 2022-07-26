@@ -6,9 +6,9 @@ const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require("../config/keys");
 const authentication=require("../middlewares/auth")
-router.post("/signup",(req,res)=>{
-    const {name,email,password}=req.body
-     if(!name || !email || !password){
+router.post("/signup",(req,res,next)=>{
+    const {name,email,password,username}=req.body
+     if(!name || !email || !password || !username){
        return res.status(404).json({error:"Please fill all the fields properly"})
      }
     
@@ -18,11 +18,15 @@ router.post("/signup",(req,res)=>{
         }
         bcrypt.hash(password,saltRounds).then((hashpass)=>{
             const u=new User({...req.body,password:hashpass})
-            u.save().then(()=>res.json(u)).catch((e)=>console.log(e))
+            u.save().then((r)=>{
+                const {_id,name,username,email}=r
+                const token=jwt.sign({_id:u.id},JWT_SECRET)
+                return res.json({token,user:{_id,name,username,email}})
+               }).catch((e)=>next(e))
          })
-     }).catch((e)=>console.log(e))
+     }).catch((e)=>next(e))
 })
-router.post("/login",(req,res)=>{
+router.post("/login",(req,res,next)=>{
     const {email,password}=req.body;
     if(!email || !password){
         return res.status(500).json({error:"Please fill the details properly"})
@@ -34,17 +38,23 @@ router.post("/login",(req,res)=>{
         bcrypt.compare(password,user.password).then((r)=>{
            if(r){
             // return res.json("Succesfully Logged in")
+            const {_id,name,username,email}=user
             const token=jwt.sign({_id:user.id},JWT_SECRET)
-            return res.json({token})
+            return res.json({token,user:{_id,name,username,email}})
            }
            else{
             return res.status(404).json({error:"Invalid username or password"})
 
            }
-        }).catch((e)=>console.log(e))
+        }).catch((e)=>next(e))
     })
 })
-router.get("/profile",authentication,(req,res)=>{
+router.post("/dob",authentication,(req,res,next)=>{
+    const user=User.findByIdAndUpdate(req.user._id,{
+        dob:req.body
+    })
+})
+router.get("/profile",authentication,(req,res,next)=>{
     res.send("Hello")
 })
 module.exports=router;

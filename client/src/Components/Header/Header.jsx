@@ -3,9 +3,10 @@ import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
 import { RiMessengerLine } from "react-icons/ri";
-import { MdOutlineAddCircleOutline, MdOutlineExplore } from "react-icons/md";
+import { MdOutlineExplore } from "react-icons/md";
 import ActivityDropdown from "./ActivityDrop";
 import MenuDropdown from "./UserDrop";
+import Popup from "../CreatePost/Popup";
 
 const Header = () => {
   return (
@@ -43,9 +44,7 @@ const Header = () => {
             </Link>
           </div>
 
-          <Link to="/">
-            <MdOutlineAddCircleOutline />
-          </Link>
+          <Popup/>
           <Link to="/">
             <MdOutlineExplore />
           </Link>

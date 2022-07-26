@@ -30,7 +30,7 @@ function App() {
          <Route path="/profile/posts" element={<Posts/>}/>
 
       </Routes>
-     <SingleUser/>
+     
       <Footer />
     </div>
   );

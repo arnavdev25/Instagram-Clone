@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Footer from '../Components/Home/Footer'
 import style from "../Styles/Login.module.css"
+import { useNavigate } from "react-router-dom";
+import axios from "axios"
 const Login = () => {
   const [FormData, setFormData] = useState({});
   const [btn,setBtn]=useState(true)
   const [types,setTypes]=useState("password")
   const [clickInp, setclickInp] = useState(false)
   const [pass,setPass]=useState(false)
+  const navigate=useNavigate()
   function handleBtn(){
       
         if(clickInp && pass){
@@ -45,13 +48,20 @@ const Login = () => {
       }
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (FormData) {
-         console.log(FormData)
- 
-    } else {
-      alert("Fill the details Correctly");
-    }
+  
+      e.preventDefault();
+      if (FormData) {
+        axios
+          .post("http://localhost:8080/auth/login", FormData)
+          .then((data) => {
+            // console.log(data)
+            navigate("/feed");
+          })
+          .catch((e) => alert(e.response.data.error));
+      } else {
+        alert("Invalid Credentials");
+      } 
+   
   };
   const rightLogoOnClick=()=>{
     setTypes(types==="password" ? "text" : "password")
