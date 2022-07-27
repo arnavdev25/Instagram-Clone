@@ -3,6 +3,8 @@ import CustomPopup from "./CustomPopUp";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDropzone } from "react-dropzone";
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
 const baseStyle = {
   display: 'flex',
   flexDirection: 'column',
@@ -30,16 +32,53 @@ const rejectStyle = {
 };
 const Popup = () => {
   const [drop,setDrop]=useState(false)
-
+   const [body,setBody]=useState("")
   const [files, setFiles] = useState([]);
-
+  const [file,setFile]=useState({})
+  const [url,seturl]=useState("")
+  const navigate=useNavigate()
+  const post=()=>{
+    const config = {
+      headers:{
+        Authorization:"Bearer "+localStorage.getItem("jwt")
+      }
+    };
+    const data=new FormData();
+    data.append("file",file);
+    data.append("upload_preset","Instagram-clone")
+    data.append("cloud_name","muskan2507")
+    axios.post("https://api.cloudinary.com/v1_1/muskan2507/image/upload",data)
+    .then(({data})=>{
+      // console.log(data.url)
+      seturl(data.url)
+    })
+    .catch((e)=>console.log(e))
+    axios
+    .post("http://localhost:8080/post/createpost", {description:body,photo:url},config)
+    .then((data) => {
+      alert("Posted Successfully")
+      navigate("/feed");
+      // console.log(data)
+      
+    })
+    .catch((e) => alert(e.response.data.error));
+  }
   const onDrop = useCallback(acceptedFiles => {
     setDrop(true)
+    // console.log(acceptedFiles[0])
+    setFile(acceptedFiles[0])
+    // console.log(file)
+    
     setFiles(acceptedFiles.map(file => Object.assign(file, {
       preview: URL.createObjectURL(file)
     })));
+   
+    // console.log("url"+url)
   }, []);
-
+function handleSubmit(){
+  // console.log(body,files)
+  post()
+}
   const {
     getRootProps,
     getInputProps,
@@ -106,9 +145,9 @@ const Popup = () => {
           <aside>
         {thumbs}
       </aside>
-      <form>
+      <form onSubmit={handleSubmit} >
       <label>Enter Description</label> <br/>
-        <textarea className={styles.input} ></textarea>
+        <textarea className={styles.input} onChange={(e)=>setBody(e.target.value)} ></textarea>
         <br/>
         <input className={styles.btn1} type="submit"/>
       </form>

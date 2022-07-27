@@ -13,8 +13,8 @@ router.get("/mypost",authentication,(req,res)=>{
     }).catch((e)=>console.log(e))
   })
 router.post("/createpost",authentication,(req,res)=>{
-    const {title,description}=req.body;
-    if(!title || !description){
+    const {photo,description}=req.body;
+    if(!photo || !description){
         return res.status(403).json({error:"Please fill correct details"})
     }
     const post=new Post({...req.body,postedBy:req.user})

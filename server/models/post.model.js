@@ -2,9 +2,8 @@ const { Schema, model } = require("mongoose");
 const mongoose=require("mongoose")
 const {ObjectId}=mongoose.Schema.Types
 const postSchema=new Schema({
-    title:{type:String,required:true},
     description:{type:String,required:true},
-    photo:{type:String},
+    photo:{type:String,required:true},
     postedBy:{
     type:ObjectId,
     ref:"user"

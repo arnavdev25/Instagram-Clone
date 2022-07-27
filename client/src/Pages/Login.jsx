@@ -53,9 +53,11 @@ const Login = () => {
       if (FormData) {
         axios
           .post("http://localhost:8080/auth/login", FormData)
-          .then((data) => {
+          .then(({data}) => {
             // console.log(data)
-            navigate("/feed");
+            localStorage.setItem("jwt",data.token)
+            localStorage.setItem("User",JSON.stringify(data.user))
+            // navigate("/feed");
           })
           .catch((e) => alert(e.response.data.error));
       } else {

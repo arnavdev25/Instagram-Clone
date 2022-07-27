@@ -4,8 +4,11 @@ import dateOfBirth from '../../Images/dateOfBirth.png'
 
 import apple_store from '../../Images/apple_store.png'
 import google_play from '../../Images/google_play.png'
+import axios from 'axios'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const Signup2 = () => {
+  const navigate=useNavigate()
 const [dates, setdates] = useState({
   month: 'January', date: '1', year: '2022'
 })
@@ -20,8 +23,17 @@ const handleChange=(e)=>{
 }
 
 const handleSubmit=(e)=>{
+  const config = {
+    headers:{
+      Authorization:"Bearer "+localStorage.getItem("jwt")
+    }
+  };
 e.preventDefault();
-console.log(dates)
+// console.log(dates)
+axios.post("http://localhost:8080/auth/signup/dob",dates,config)
+.then(()=>{
+  navigate("/signup/otp")
+}).catch((e)=>console.log(e))
 }
 
   return (

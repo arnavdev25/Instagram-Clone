@@ -57,7 +57,9 @@ const Signup = () => {
     if (FormData && validateEmail(FormData.email)) {
       axios
         .post("http://localhost:8080/auth/signup", FormData)
-        .then((data) => {
+        .then(({data}) => {
+          localStorage.setItem("jwt",data.token)
+          localStorage.setItem("User",JSON.stringify(data.user))
           navigate("/signup/details");
         })
         .catch((e) => alert(e.response.data.error));

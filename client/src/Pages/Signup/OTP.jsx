@@ -6,7 +6,7 @@ import style from '../../Styles/Signup.module.css'
 const Otp = () => {
 const [otps, setOtps]=useState('')
 const [disable, setDisable]=useState(true)
-
+const email=JSON.parse(localStorage.getItem("User")).email
   const handleChange=(e)=>{
     setOtps(
        e.target.value,
@@ -36,7 +36,7 @@ alert("OTP length should be 6 digit")
 <p>Enter the 6-digit code we sent to:</p>
 <span>
     {/* data from server */}
-    9999999999
+  {email}
 </span>
   
   </div>

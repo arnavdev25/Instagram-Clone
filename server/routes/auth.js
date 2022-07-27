@@ -49,10 +49,11 @@ router.post("/login",(req,res,next)=>{
         }).catch((e)=>next(e))
     })
 })
-router.post("/dob",authentication,(req,res,next)=>{
+router.post("/signup/dob",authentication,(req,res,next)=>{
     const user=User.findByIdAndUpdate(req.user._id,{
         dob:req.body
-    })
+    }).then(()=>res.send("Success"))
+    .catch((e)=>next(e))
 })
 router.get("/profile",authentication,(req,res,next)=>{
     res.send("Hello")
