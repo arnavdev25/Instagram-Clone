@@ -1,4 +1,4 @@
-import { FAILURE, REQUEST, SUCCESS,ASC,DESC, SEARCH,POSTS,REELS,VIDEOS,TAGGED} from "./actionTypes";
+import { FAILURE, REQUEST, SUCCESS,ASC,DESC, SEARCH,POSTS,REELS,VIDEOS,TAGGED, USER} from "./actionTypes";
 import {  GET_INDEX_DATA,  GET_CATS_DATA,  GET_BESTSELLER_DATA,  GET_LATEST_DATA,  GET_MAKEUP_DATA,  GET_MOSTVIEWED_DATA,  GET_CATPRODUCTS_DATA,} from "./actionTypes";
 
 
@@ -19,6 +19,8 @@ const initState = {
 const reducer = (state = initState, { type, payload }) => {
 
   switch (type) {
+    case USER :
+      return payload
     case REQUEST:
       return {
         ...state,

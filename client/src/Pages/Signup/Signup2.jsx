@@ -5,7 +5,7 @@ import dateOfBirth from '../../Images/dateOfBirth.png'
 import apple_store from '../../Images/apple_store.png'
 import google_play from '../../Images/google_play.png'
 import axios from 'axios'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Signup2 = () => {
   const navigate=useNavigate()

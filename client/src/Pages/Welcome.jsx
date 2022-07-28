@@ -1,59 +1,74 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
 import style from "../Styles/Login.module.css";
-
+import axios from "axios"
 import styles from "../Styles/Welcome.module.css";
 import Footer from "../Components/Home/Footer";
 import Slider from "../Components/Home/Slider";
 const Welcome = () => {
   const [FormData, setFormData] = useState({});
-  const [btn, setBtn] = useState(true);
-  const [types, setTypes] = useState("password");
-  const [clickInp, setclickInp] = useState(false);
-  const [pass, setPass] = useState(false);
-  function handleBtn() {
-    if (clickInp && pass) {
-      setBtn(false);
-    } else {
-      setBtn(true);
-    }
-    // console.log(pass)
+  const [btn,setBtn]=useState(true)
+  const [types,setTypes]=useState("password")
+  const [clickInp, setclickInp] = useState(false)
+  const [pass,setPass]=useState(false)
+  function handleBtn(){
+      
+        if(clickInp && pass){
+          setBtn(false)
+        }
+        else{
+          setBtn(true)
+        }
+        // console.log(pass)
+
   }
-  useEffect(() => {
-    handleBtn();
-  }, [clickInp, pass]);
+  useEffect(()=>{
+    handleBtn()
+  },[clickInp,pass])
   const handleChange = (e) => {
     const inputName = e.target.name;
-    setFormData({
-      ...FormData,
-      [inputName]: e.target.value,
-    });
+      setFormData({
+        ...FormData,
+        [inputName]: e.target.value,
+      });
 
-    if (e.target.value === "") {
-      setclickInp(false);
-
-      //   alert("hhh")
-    } else {
-      setclickInp(true);
-    }
-    if (inputName === "password") {
-      if (e.target.value.length >= 8) {
-        setPass(true);
+      
+      if(e.target.value===''){
+        setclickInp(false)
+     
+    //   alert("hhh")
+      }else{
+          setclickInp(true)
+        
       }
-      // console.log(pass)
-    }
+      if(inputName==="password"){
+        if(e.target.value.length>=8){
+          setPass(true)
+        }
+        // console.log(pass)
+      }
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (FormData) {
-      console.log(FormData);
-    } else {
-      alert("Fill the details Correctly");
-    }
+  
+      e.preventDefault();
+      if (FormData) {
+        axios
+          .post("http://localhost:8080/auth/login", FormData)
+          .then(({data}) => {
+            // console.log(data)
+            localStorage.setItem("jwt",data.token)
+            localStorage.setItem("User",JSON.stringify(data.user))
+            // navigate("/feed");
+          })
+          .catch((e) => alert(e.response.data.error));
+      } else {
+        alert("Invalid Credentials");
+      } 
+   
   };
-  const rightLogoOnClick = () => {
-    setTypes(types === "password" ? "text" : "password");
-  };
+  const rightLogoOnClick=()=>{
+    setTypes(types==="password" ? "text" : "password")
+}
 
   return (
     <div>

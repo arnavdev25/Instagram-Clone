@@ -37,6 +37,7 @@ const Popup = () => {
   const [file,setFile]=useState({})
   const [url,seturl]=useState("")
   const navigate=useNavigate()
+ 
   const post=()=>{
     const config = {
       headers:{
@@ -45,7 +46,7 @@ const Popup = () => {
     };
     const data=new FormData();
     data.append("file",file);
-    data.append("upload_preset","Instagram-clone")
+    data.append("upload_preset","insta-clone")
     data.append("cloud_name","muskan2507")
     axios.post("https://api.cloudinary.com/v1_1/muskan2507/image/upload",data)
     .then(({data})=>{

@@ -5,7 +5,7 @@ export const POSTS = 'POSTS'
 export const REELS = 'REELS'
 export const VIDEOS = 'VIDEOS'
 export const TAGGED = 'TAGGED'
-
+export const USER="USER"
 
 
 /*
