@@ -44,16 +44,7 @@ const Popup = () => {
         Authorization:"Bearer "+localStorage.getItem("jwt")
       }
     };
-    const data=new FormData();
-    data.append("file",file);
-    data.append("upload_preset","insta-clone")
-    data.append("cloud_name","muskan2507")
-    axios.post("https://api.cloudinary.com/v1_1/muskan2507/image/upload",data)
-    .then(({data})=>{
-      // console.log(data.url)
-      seturl(data.url)
-    })
-    .catch((e)=>console.log(e))
+   
     axios
     .post("http://localhost:8080/post/createpost", {description:body,photo:url},config)
     .then((data) => {
@@ -73,6 +64,17 @@ const Popup = () => {
     setFiles(acceptedFiles.map(file => Object.assign(file, {
       preview: URL.createObjectURL(file)
     })));
+    // CLOUDINARY_URL=cloudinary://961533929291198:ocTP1be7-8xVz3_0Yp8dmzS4F8c@muskan2507
+    const data=new FormData();
+    data.append("file",file);
+    data.append("upload_preset","insta-clone")
+    data.append("cloud_name","muskan2507")
+    axios.post("https://api.cloudinary.com/v1_1/muskan2507/image/upload",data)
+    .then(({data})=>{
+      // console.log(data)
+      seturl(data.url)
+    })
+    .catch((e)=>console.log(e))
    
     // console.log("url"+url)
   }, []);

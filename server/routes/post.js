@@ -3,7 +3,7 @@ const express=require("express");
 const Post = require("../models/post.model");
 const router=express.Router();
 router.get("/all",(req,res)=>{
-  Post.find().populate("postedBy","_id name").then((r)=>{
+  Post.find().populate("postedBy").then((r)=>{
     res.json(r)
   }).catch((e)=>console.log(e))
 })

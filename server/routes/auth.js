@@ -39,9 +39,9 @@ router.post("/login",(req,res,next)=>{
         bcrypt.compare(password,user.password).then((r)=>{
            if(r){
             // return res.json("Succesfully Logged in")
-            const {_id,name,username,email}=user
+            const {_id,name,username,email,profile_photo}=user
             const token=jwt.sign({_id:user.id},process.env.JWT_SECRET)
-            return res.json({token,user:{_id,name,username,email}})
+            return res.json({token,user:{_id,name,username,email,profile_photo}})
            }
            else{
             return res.status(404).json({error:"Invalid username or password"})
@@ -56,7 +56,11 @@ router.post("/signup/dob",authentication,(req,res,next)=>{
     }).then(()=>res.send("Success"))
     .catch((e)=>next(e))
 })
-router.get("/profile",authentication,(req,res,next)=>{
-    res.send("Hello")
+
+router.get("/",authentication,(req,res,next)=>{
+    // res.send("Hello")
+    User.find().then((r)=>{
+        res.json(r)
+    }).catch((e)=>next(e))
 })
 module.exports=router;

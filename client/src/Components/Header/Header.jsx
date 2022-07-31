@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
 import { RiMessengerLine } from "react-icons/ri";
@@ -16,7 +15,7 @@ const Header = () => {
         {/* Left */}
 
         <div>
-          <img src={logo} alt="" />
+          <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="" />
         </div>
 
         {/* Middle */}

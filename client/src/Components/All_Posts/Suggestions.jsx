@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react'
-import suggestions from '../../assets/Data/Suggestion.json';
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 const Suggestions = () => {
-  
+  const [suggestions,setSuggestions]=useState([])
   useEffect(()=>{
-    axios.get("http://localhost:8080/user").then(({data})=>console.log(data));
+    const config = {
+      headers:{
+        Authorization:"Bearer "+localStorage.getItem("jwt")
+      }
+    };
+   
+    axios.get("http://localhost:8080/auth",config).then(({data})=>setSuggestions(data));
   },[])
   return (
     <div className="ml-7 mt-10">
@@ -15,11 +20,11 @@ const Suggestions = () => {
     </div>
     {suggestions.map((suggestion) => (
       <div
-        key={suggestion.id}
+        key={suggestion._id}
         className="flex items-center justify-between mt-2"
       >
         <img
-          src={suggestion.img}
+          src={suggestion.profile_photo}
           alt=""
           className="w-10 h-10 rounded-full object-cover border p-[2px]"
         />
