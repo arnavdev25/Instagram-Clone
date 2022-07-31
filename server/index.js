@@ -9,6 +9,7 @@ const cors=require("cors")
 const app=express()
 
 // socket.io
+const messageRoutes = require("./routes/messages");
 const socket = require("socket.io");
 
 
@@ -20,6 +21,9 @@ app.use(express.json())
 app.use("/auth",authRouter)
 app.use("/post",postRouter)
 app.use("/otp",otpRouter)
+app.use("/api/messages", messageRoutes);
+
+
 app.get("/",(req,res)=>{
     res.send("Welcome")
 })
