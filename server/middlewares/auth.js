@@ -12,7 +12,6 @@ module.exports=(req,res,next)=>{
    jwt.verify(token,process.env.JWT_SECRET,(err,payload)=>{
     if(err){
         return res.status(404).json({error:"Need to Looged In"})
-
     }
     const {_id}=payload
     User.findById(_id).then((data)=>{
