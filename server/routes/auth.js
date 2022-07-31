@@ -3,8 +3,9 @@ const User = require("../models/user.model")
 const router=express.Router()
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+require('dotenv').config()
+
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require("../config/keys");
 const authentication=require("../middlewares/auth")
 router.post("/signup",(req,res,next)=>{
     const {name,email,password,username}=req.body
@@ -20,7 +21,7 @@ router.post("/signup",(req,res,next)=>{
             const u=new User({...req.body,password:hashpass})
             u.save().then((r)=>{
                 const {_id,name,username,email}=r
-                const token=jwt.sign({_id:u.id},JWT_SECRET)
+                const token=jwt.sign({_id:u.id},process.env.JWT_SECRET)
                 return res.json({token,user:{_id,name,username,email}})
                }).catch((e)=>next(e))
          })
@@ -39,7 +40,7 @@ router.post("/login",(req,res,next)=>{
            if(r){
             // return res.json("Succesfully Logged in")
             const {_id,name,username,email}=user
-            const token=jwt.sign({_id:user.id},JWT_SECRET)
+            const token=jwt.sign({_id:user.id},process.env.JWT_SECRET)
             return res.json({token,user:{_id,name,username,email}})
            }
            else{
