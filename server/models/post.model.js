@@ -7,7 +7,9 @@ const postSchema=new Schema({
     postedBy:{
     type:ObjectId,
     ref:"user"
-    }
+    },
+    likes:[{type:ObjectId,ref:"user"}],
+    comments:[{type:ObjectId,ref:"user"}]
 })
 const Post=model("post",postSchema)
 module.exports=Post

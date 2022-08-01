@@ -22,4 +22,32 @@ router.post("/createpost",authentication,(req,res)=>{
         res.json(r)
     }).catch((e)=>console.log(e))
 })
+router.put("/like",authentication,(req,res,next)=>{
+  Post.findByIdAndUpdate(req.body.postId,{
+    $push:{likes:req.user._id}
+  },{
+    new:true
+  }).exec((err,r)=>{
+    if(err){
+      next(err)
+    }
+    else{
+      res.json(r)
+    }
+  })
+})
+router.put("/unlike",authentication,(req,res,next)=>{
+  Post.findByIdAndUpdate(req.body.postId,{
+    $pull:{likes:req.user._id}
+  },{
+    new:true
+  }).exec((err,r)=>{
+    if(err){
+      next(err)
+    }
+    else{
+      res.json(r)
+    }
+  })
+})
 module.exports=router
