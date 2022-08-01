@@ -1,15 +1,20 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "../../Redux/actions";
 
 export const Posts = () => {
-  const dispatch = useDispatch();
-
-  const { data, filterData } = useSelector((state) => state.reducer);
-  console.log(data, "dataposts", filterData, "filterdata");
+  const [posts,setPosts]=useState([])
   useEffect(() => {
-    dispatch(getPosts(data));
-  }, [dispatch]);
+    const config = {
+      headers:{
+        Authorization:"Bearer "+localStorage.getItem("jwt")
+      }
+    };
+    axios.get("http://localhost:8080/post/mypost",config)
+    .then(({data})=>{
+      console.log(data)
+      setPosts(data)
+    })
+  }, []);
 
   return <div>Post</div>;
 };

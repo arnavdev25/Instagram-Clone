@@ -48,7 +48,7 @@ export const Userpost = () => {
    <hr/> 
          <NavStyle>
          <div className='linksdiv'>
-         <NavLink  to="/profile/posts"><BsFillGrid3X3GapFill/><span>POSTS</span></NavLink>
+         <NavLink  to="/profile/"><BsFillGrid3X3GapFill/><span>POSTS</span></NavLink>
          <NavLink  to="/profile/reels"><MdOutlineVideoLibrary/><span>REELS</span></NavLink>
          <NavLink  to="/profile/videos" ><i className="fa-solid fa-circle-play"></i> <span>VIDEOS</span></NavLink>
          <NavLink  to="/profile/tagged" ><MdOutlinePermContactCalendar/><span>TAGGED</span></NavLink>

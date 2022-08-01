@@ -54,10 +54,10 @@ const Login = () => {
         axios
           .post("http://localhost:8080/auth/login", FormData)
           .then(({data}) => {
-            // console.log(data)
+            console.log(data)
             localStorage.setItem("jwt",data.token)
             localStorage.setItem("User",JSON.stringify(data.user))
-            // navigate("/feed");
+            navigate("/feed");
           })
           .catch((e) => alert(e.response.data.error));
       } else {

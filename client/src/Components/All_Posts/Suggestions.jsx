@@ -10,7 +10,11 @@ const Suggestions = () => {
       }
     };
    
-    axios.get("http://localhost:8080/auth",config).then(({data})=>setSuggestions(data));
+    axios.get("http://localhost:8080/auth",config).then(({data})=>{
+      // console.log(data)
+      setSuggestions(data)
+    }).catch((e)=>console.log(e))
+    // console.log(suggestions)
   },[])
   return (
     <div className="ml-7 mt-10">

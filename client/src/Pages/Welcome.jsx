@@ -5,8 +5,10 @@ import axios from "axios"
 import styles from "../Styles/Welcome.module.css";
 import Footer from "../Components/Home/Footer";
 import Slider from "../Components/Home/Slider";
+import { useNavigate } from "react-router-dom";
 const Welcome = () => {
   const [FormData, setFormData] = useState({});
+  const navigate=useNavigate()
   const [btn,setBtn]=useState(true)
   const [types,setTypes]=useState("password")
   const [clickInp, setclickInp] = useState(false)
@@ -58,7 +60,7 @@ const Welcome = () => {
             // console.log(data)
             localStorage.setItem("jwt",data.token)
             localStorage.setItem("User",JSON.stringify(data.user))
-            // navigate("/feed");
+            navigate("/feed");
           })
           .catch((e) => alert(e.response.data.error));
       } else {

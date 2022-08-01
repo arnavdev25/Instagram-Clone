@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {CgProfile} from "react-icons/cg";
 import {MdPhotoLibrary} from "react-icons/md";
@@ -8,8 +8,12 @@ import {HiSwitchHorizontal} from "react-icons/hi";
   // console.log(user)
 const MenuDropdown = () => {
   const [isActive,setIsActive] = useState(false);
+  const navigate=useNavigate()
   let user=JSON.parse(localStorage.getItem("User"))
-
+   function logout(){
+    localStorage.clear()
+    navigate("/")
+   }
   return (
     <>
 
@@ -24,7 +28,7 @@ const MenuDropdown = () => {
         <nav className="dropdown-inner" style={{ width: "230px" }}>
           <ul>
             <li className="menu-item hover:bg-gray-50 active:bg-gray-100">
-              <Link to="" className="flex py-2.5 px-4 items-center text-sm">
+              <Link to="/profile" className="flex py-2.5 px-4 items-center text-sm">
                 <CgProfile/>
                 <span className="ml-3">Profile</span>
               </Link>
@@ -49,7 +53,7 @@ const MenuDropdown = () => {
             </li>
             <li className="menu-item flex border-t hover:bg-gray-50 active:bg-gray-100">
               
-                <button className="py-2.5 px-4 mb-1 text-sm" type="submit">
+                <button className="py-2.5 px-4 mb-1 text-sm" type="submit" onClick={logout} >
                   Log Out
                 </button>
               

@@ -187,18 +187,19 @@ const Profsty = styled.div`
 
 }
 `
-
-export const Profile = ({  username,  posts_no,  followers_no,  following_no,  user_proj_url,  Avatar_url,}) => {
+let user=JSON.parse(localStorage.getItem("User"))
+// console.log(user)
+export const Profile = () => {
   return (
     <Profsty>
       <div className="imgdiv">
-        <img className="imgtag" src={Avatar_url} alt="Invalid-Image" />
+        <img className="imgtag" src={user.profile_photo} alt="Invalid-Image" />
       </div>
       <div className="profstruc">
         <div className="namestruc">
           <div className="userdiv">
             {" "}
-            <div >{username}</div>
+            <div >{user.username}</div>
             <GoVerified style={{color: "0095f6"}}/>
           </div>
 
@@ -211,14 +212,14 @@ export const Profile = ({  username,  posts_no,  followers_no,  following_no,  u
           </div>
         </div>
         <div className="postsno">
-          <div>{posts_no}<span>posts</span></div>
+          {/* <div>{posts_no}<span>posts</span></div>
           <div>{followers_no}<span>followers</span></div>
-          <div>{following_no}<span>following</span></div>
+          <div>{following_no}<span>following</span></div> */}
         </div>
         <div className="founderdiv">
-          <div>{username}</div>
+          <div>{user.username}</div>
           <div>founder</div>
-          <div>{user_proj_url}</div>
+          {/* <div>{user_proj_url}</div> */}
         </div>
       </div>
     </Profsty>

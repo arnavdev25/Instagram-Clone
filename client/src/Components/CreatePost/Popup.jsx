@@ -157,7 +157,7 @@ function handleSubmit(){
       </div>):(  <>
         <svg
             aria-label="Icon to represent media such as images or videos"
-            class="_ab6-"
+            className="_ab6-"
             color="#262626"
             fill="#262626"
             height="77"
