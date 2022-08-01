@@ -155,7 +155,7 @@ function handleSubmit(){
       </div>):(  <>
         <svg
             aria-label="Icon to represent media such as images or videos"
-            class="_ab6-"
+            className="_ab6-"
             color="#262626"
             fill="#262626"
             height="77"
@@ -179,8 +179,9 @@ function handleSubmit(){
 
           <br />
           <div>
-          <div {...getRootProps({style})}>            <input {...getInputProps()} />
-            <div style={{ cursor: "pointer" }}>
+          <div {...getRootProps({style})} >          
+            <input {...getInputProps()} />
+            <div style={{ cursor: "pointer"}}>
               Drag and drop your Post here.
             </div>
             <button className={styles.btn}>Select from computer</button>

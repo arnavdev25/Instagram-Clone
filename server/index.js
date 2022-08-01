@@ -7,7 +7,8 @@ require('dotenv').config()
 // console.log(process.env)
 const cors=require("cors")
 const app=express()
-
+const http = require('http');
+const server = http.createServer(app);
 // socket.io
 const messageRoutes = require("./routes/messages");
 const socket = require("socket.io");
@@ -23,18 +24,6 @@ app.use("/post",postRouter)
 app.use("/otp",otpRouter)
 app.use("/api/messages", messageRoutes);
 
-
-app.get("/",(req,res)=>{
-    res.send("Welcome")
-})
-app.listen(process.env.PORT,async()=>{
-    await connection;
-    console.log(`Server started on ${process.env.PORT}`)
-})
-
-
-
-// socket.io
 
 const io = socket(server, {
   cors: {
@@ -57,3 +46,18 @@ io.on("connection", (socket) => {
     }
   });
 });
+
+
+app.get("/",(req,res)=>{
+    res.send("Welcome")
+})
+app.listen(process.env.PORT,async()=>{
+    await connection;
+    console.log(`Server started on ${process.env.PORT}`)
+})
+
+
+
+// socket.io
+
+
