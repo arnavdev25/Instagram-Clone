@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import me from "../../assets/me.jpg";
 
 import {CgProfile} from "react-icons/cg";
 import {MdPhotoLibrary} from "react-icons/md";
 import {FiSettings} from "react-icons/fi";
 import {HiSwitchHorizontal} from "react-icons/hi";
-
+  // console.log(user)
 const MenuDropdown = () => {
   const [isActive,setIsActive] = useState(false);
+  let user=JSON.parse(localStorage.getItem("User"))
+
   return (
     <>
 
@@ -16,7 +17,7 @@ const MenuDropdown = () => {
       style={isActive?{border:"1px solid black"}:{border:"none"}}
         className="h-6 w-6 rounded-full border border-slate-200 overflow-hidden z-10"
       >
-        <img  onClick={()=>setIsActive(!isActive)} src={me} alt=""/>
+        <img  onClick={()=>setIsActive(!isActive)} src={user.profile_photo} alt=""/>
       </div>
 
       <div className={isActive ? "visible absolute top-[50px] right-[0px] lg:right-[200px] rounded-md shadow-md bg-white" : "hidden"}>
