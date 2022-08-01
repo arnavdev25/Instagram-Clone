@@ -181,8 +181,9 @@ function handleSubmit(){
 
           <br />
           <div>
-          <div {...getRootProps({style})}>            <input {...getInputProps()} />
-            <div style={{ cursor: "pointer" }}>
+          <div {...getRootProps({style})} >          
+            <input {...getInputProps()} />
+            <div style={{ cursor: "pointer"}}>
               Drag and drop your Post here.
             </div>
             <button className={styles.btn}>Select from computer</button>
