@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 //React-icons
 import { FiMoreHorizontal,FiSmile } from "react-icons/fi";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart ,AiFillHeart} from "react-icons/ai";
 import { MdCollections } from "react-icons/md";
 import { FaRegComment } from "react-icons/fa";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
@@ -9,13 +9,29 @@ import axios from "axios";
 
 const Posts = () => {
   const [posts,setPosts]=useState([])
+  const [liked,setLiked]=useState(false)
+  const config = {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("jwt"),
+    },
+  };
   useEffect(()=>{
     axios.get("http://localhost:8080/post/all")
     .then(({data})=>{
       // console.log(data)
       setPosts(data)
     })
-  },[])
+  },[liked])
+  function likeIt(id){
+    setLiked(true)
+    axios.put("http://localhost:8080/post/like",{postId:id},config)
+
+  }
+  function unLikeIt(id){
+    setLiked(false)
+    axios.put("http://localhost:8080/post/unlike",{postId:id},config)
+
+  }
   return (
     <div>
       {posts.map((post) => {
@@ -37,9 +53,10 @@ const Posts = () => {
             </div>
             {/* post caption */}
             <div>{post.description}</div>
-            <div className="flex justify-between items-center text-2xl p-5 max-w-2xl mx-auto">
+            <div className="flex justify-between  text-2xl py-5 ">
               <div className="flex items-center justify-between cursor-pointer space-x-4">
-                <AiOutlineHeart />
+              {!liked?   <div onClick={()=>likeIt(post._id)} > <AiOutlineHeart /></div>: <div onClick={()=>unLikeIt(post._id)} ><AiFillHeart/></div>}
+               
                 <FaRegComment />
                 <HiOutlinePaperAirplane className="rotate-45" />
               </div>
